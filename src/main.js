@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Signup from './Signup.vue';
+import Login from './Login.vue';
+import Home from './Home.vue';
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -17,8 +19,16 @@ Vue.http.options.emulateJSON = true;
 
 const routes = [
   {
+    path: "/",
+    component: Home
+  },
+  {
     path: "/signup",
     component: Signup
+  },
+  {
+    path: "/login",
+    component: Login
   }
 ];
 
