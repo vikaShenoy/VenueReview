@@ -1,14 +1,6 @@
-<script xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-
-  import ProfilePicture from "./ProfilePicture"
-  import BasicInfo from "./BasicInfo"
+<script>
 
   export default {
-    components: {
-      ProfilePicture,
-      BasicInfo
-    },
-
     data() {
       return {
         firstName: "",
@@ -26,13 +18,12 @@
         passwordDialog: false
       }
     },
-    mounted: function() {
-      this.retrieveUserData();
-      this.checkUser();
-    },
     methods: {
-      addPhoto() {
 
+      mounted() {
+        this.retrieveUserData();
+        console.log(this.firstName);
+        this.checkUser();
       },
 
       exitPassEdit() {
@@ -135,61 +126,117 @@
           });
       },
 
-      logout() {
-        this.$http.post("http://localhost:4941/api/v1/users/logout", {}, {
-          headers: {'X-Authorization': localStorage.getItem("authToken")}
-        })
-          .then(function(response) {
-            localStorage.setItem("authToken", null);
-            this.$router.push("/")
-          }, function(error) {
-            console.log(error);
-          });
-      }
     }
   }
+
+
 </script>
 
 <template>
-  <div>
-    <v-app>
-      <v-container>
-        <v-layout grid-list>
-          <v-flex>
-            <v-card class="uk-card-header uk-padding" style="background: powderblue">
-              <v-layout row>
-                <v-spacer>
-                  <h1 class="headings">Profile</h1>
-                </v-spacer>
+  <v-card class="uk-card uk-padding" style="margin: 10px">
 
-                <v-spacer align="right">
-                  <v-btn
-                    depressed
-                    @click="logout()"
-                  >Logout</v-btn>
-                </v-spacer>
-              </v-layout>
+    <v-layout row>
+      <h4 class="font-weight-light">Username</h4>
+      <v-spacer align="right">
+        <h4 style="color:indianred">{{ this.username }}</h4>
+      </v-spacer>
+    </v-layout>
+    <hr>
+
+    <v-layout row>
+      <h4 class="font-weight-light">First Name</h4>
+      <v-spacer align="right">
+        <h4 style="color:indianred">{{ this.firstName }}</h4>
+      </v-spacer>
+    </v-layout>
+    <hr>
+
+
+    <v-layout row>
+      <h4 class="font-weight-light">Last Name</h4>
+      <v-spacer align="right">
+        <h4 style="color:indianred">{{ this.lastName }}</h4>
+      </v-spacer>
+    </v-layout>
+    <hr>
+
+
+    <div v-if="this.ownProfile">
+      <v-layout row>
+        <h4 class="font-weight-light">Email</h4>
+        <v-spacer align="right">
+          <h4 style="color:indianred">{{ this.email }}</h4>
+        </v-spacer>
+      </v-layout>
+    </div>
+    <hr>
+
+    <v-layout row>
+      <!--Edit names-->
+      <template>
+        <v-layout row justify-center>
+          <v-dialog v-model="dialog" persistent max-width="500">
+            <template v-slot:activator="{ on }">
+              <v-btn color="blue" dark v-on="on">Edit Profile</v-btn>
+            </template>
+            <v-card class="uk-padding-small">
+              <v-card-title class="headline">Edit Profile</v-card-title>
+              <v-text-field
+                v-model="firstName"
+                label="First Name"
+                :maxlength="64"
+                :error-messages="firstNameErrors"
+              ></v-text-field>
+
+              <v-text-field
+                v-model="lastName"
+                label="Last Name"
+                :error-messages="lastNameErrors"
+              ></v-text-field>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" flat @click="exitNameEdit()">Cancel</v-btn>
+                <v-btn color="green darken-1" flat @click="saveNameEdit()">Save</v-btn>
+              </v-card-actions>
             </v-card>
-          </v-flex>
+          </v-dialog>
         </v-layout>
-        <v-layout grid-list>
+      </template>
+      <!--Edit password-->
+      <template>
+        <v-layout row justify-center>
+          <v-dialog v-model="passwordDialog" persistent max-width="500">
+            <template v-slot:activator="{ on }">
+              <v-btn color="red" dark v-on="on">Edit Password</v-btn>
+            </template>
+            <v-card class="uk-padding-small">
+              <v-card-title class="headline">Edit Password</v-card-title>
+              <v-text-field
+                v-model="oldPassword"
+                label="Old Password"
+                type="password"
+                :error-messages="oldPasswordErrors"
+              ></v-text-field>
 
-        <!--Profile info card-->
-          <v-flex>
-            <BasicInfo/>
-          </v-flex>
+              <v-text-field
+                v-model="newPassword"
+                label="New Password"
+                type="password"
+                :error-messages="newPasswordErrors"
+              ></v-text-field>
 
-        <!--Photo card-->
-          <v-flex>
-            <ProfilePicture/>
-          </v-flex>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green darken-1" flat @click="exitPassEdit()">Cancel</v-btn>
+                <v-btn color="green darken-1" flat @click="savePassEdit()">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-layout>
-      </v-container>
-    </v-app>
-  </div>
+      </template>
+    </v-layout>
+  </v-card>
+
 
 </template>
-
-<style lang="css" scoped>
-  @import './../stylesheets/style.css';
-</style>
