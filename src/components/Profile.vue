@@ -6,10 +6,9 @@
         lastName: "",
         username: "",
         email: "",
-        currentPassword: "",
+        oldPassword: "",
         newPassword: "",
         ownProfile: false,
-        dialog: false
       }
     },
     mounted: function() {
@@ -23,12 +22,12 @@
           this.ownProfile = true;
         }
       },
+
       retrieveUserData() {
         this.$http.get("http://localhost:4941/api/v1/users/" + this.$route.params.userId, {
           headers: {'X-Authorization': localStorage.getItem("authToken")}
         })
           .then(function(response) {
-
             console.log(response.data);
             this.firstName = response.data.givenName;
             this.lastName = response.data.familyName;
@@ -40,9 +39,15 @@
       },
 
       logout() {
-        localStorage.setItem("authToken", null);
-        this.$router.push("/")
-
+        this.$http.post("http://localhost:4941/api/v1/users/logout", {}, {
+          headers: {'X-Authorization': localStorage.getItem("authToken")}
+        })
+          .then(function(response) {
+            localStorage.setItem("authToken", null);
+            this.$router.push("/")
+          }, function(error) {
+            console.log(error);
+          });
       }
     }
   }
@@ -108,68 +113,10 @@
                   </v-spacer>
                 </v-layout>
               </div>
-
-              <v-dialog
-                v-model="dialog"
-                max-width="500"
-              >
-                <template v-slot:activator="{ on }">
-
-                  <v-btn
-                    depressed
-                    v-on="on"
-                  >Edit</v-btn>
-                </template>
-
-                <v-card class="padding">
-
-                  <h2 class="padding">Edit Profile</h2>
-
-                  <v-text-field
-                    v-model="firstName"
-                    label="First Name"
-                    :error-messages="firstNameErrors"
-                    @blur="validateFirstName()"
-                    :maxlength="64"
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="lastName"
-                    label="Last Name"
-                    :error-messages="lastNameErrors"
-                    @blur="validateLastName()"
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="currentPassword"
-                    label="Current Password"
-                    :error-messages="lastNameErrors"
-                    @blur="validateLastName()"
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="newPassword"
-                    label="New Password"
-                    :error-messages="lastNameErrors"
-                    @blur="validateLastName()"
-                  ></v-text-field>
-
-                  <v-btn
-                    class="v-btn--block"
-                  >Save</v-btn>
-
-                </v-card>
-
-              </v-dialog>
-
-
-
             </v-card>
 
           </v-flex>
         </v-layout>
-
-
       </v-container>
     </v-app>
   </div>

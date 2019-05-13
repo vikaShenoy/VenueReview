@@ -27,7 +27,6 @@
             this.loginSuccess(response);
           }, function(error) {
             console.log(error);
-
             this.$http.post("http://localhost:4941/api/v1/users/login", JSON.stringify({
               "email": this.userEmail,
               "password": this.password
@@ -80,7 +79,7 @@
 
           <v-text-field
             v-model="userEmail"
-            label="Username / email"
+            label="Username / Email"
             :error-messages="userEmailErrors"
             @blur="validateUserEmail()"
           ></v-text-field>
@@ -94,9 +93,9 @@
           ></v-text-field>
 
           <v-alert
-            :value="errorFlag"
-            type="error"
-          >Invalid credentials.</v-alert>
+          :value="errorFlag"
+          type="error"
+        >Invalid credentials.</v-alert>
 
           <br>
           <br>
