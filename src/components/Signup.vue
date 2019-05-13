@@ -1,5 +1,6 @@
 <script>
   const regeneratorRuntime = require("regenerator-runtime");
+  import { checkEmail } from '../util/Validate';
 
   export default {
     data() {
@@ -23,15 +24,6 @@
       console.log("Mounting complete.");
     },
     methods: {
-      /**
-       * Check email meets the standard regex for a valid email.
-       * @param email email user has entered to register with
-       * @returns {boolean} true if valid, false otherwise
-       */
-      checkEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-      },
       /**
        * Check user first name field is non-empty.
        * @returns {boolean} true if first name is valid, false otherwise
@@ -83,7 +75,7 @@
         this.emailErrors = [];
         if (!this.email) {
           this.emailErrors = ["Email is required"];
-        } else if (!this.checkEmail(this.email)) {
+        } else if (!checkEmail(this.email)) {
           this.emailErrors = ["Email is invalid"];
         } else {
           this.emailErrors = [];
@@ -150,7 +142,6 @@
           "password": this.password
         }))
           .then(function(response) {
-            console.log(6);
             localStorage.setItem("userId", response.body.userId);
             this.$http.post("http://localhost:4941/api/v1/users/login", JSON.stringify({
               "username": this.username,
@@ -158,8 +149,6 @@
               "password": this.password
             }))
               .then(function(response) {
-                console.log(response);
-                console.log(7);
                 localStorage.setItem("authToken", response.data.token);
                 localStorage.setItem("userId", response.data.userId);
                 this.$router.push("/");
@@ -177,10 +166,10 @@
 <template>
 
   <div>
-    <v-app>
+    <v-app style="background: mintcream">
       <v-container>
 
-        <v-card id="signup" class="uk-card uk-card-header">
+        <v-card class="uk-card-header" style="background: powderblue">
           <h2 class="headings">Sign Up</h2>
         </v-card>
 
@@ -243,19 +232,12 @@
 </template>
 
 <style lang="css" scoped>
+  @import './../stylesheets/style.css';
   #signup {
     align-self: center;
     padding: 20px;
     background: powderblue;
   }
-  .headings {
-    color:black;
-    font-family: 'Roboto', sans-serif;
-  }
-  .padding {
-    padding: 15px
-  }
-
 </style>
 
 

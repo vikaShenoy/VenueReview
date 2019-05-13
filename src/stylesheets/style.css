@@ -1,0 +1,14 @@
+.headings {
+  color:black;
+  font-family: 'Roboto', sans-serif;
+}
+
+.padding {
+  padding: 15px
+}
+
+.header-card {
+  padding: 20px;
+  background: powderblue;
+  overflow: auto;
+}
