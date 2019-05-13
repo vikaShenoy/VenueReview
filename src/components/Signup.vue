@@ -151,7 +151,7 @@
               .then(function(response) {
                 localStorage.setItem("authToken", response.data.token);
                 localStorage.setItem("userId", response.data.userId);
-                this.$router.push("/");
+                this.$router.push("/profile/" + response.data.userId);
               }, function(e) {
                 console.log(e);
               });

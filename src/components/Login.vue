@@ -45,7 +45,7 @@
         this.errorFlag = false;
         localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("userId", response.data.userId);
-        this.$router.push("/");
+        this.$router.push("/profile/" + response.data.userId);
       },
 
       validatePassword() {
@@ -107,12 +107,8 @@
             >Login</v-btn>
 
         </v-card>
-
       </v-container>
-
-
     </v-app>
-
   </div>
 
 </template>
