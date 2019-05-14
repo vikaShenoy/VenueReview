@@ -18,18 +18,41 @@
         passwordDialog: false
       }
     },
+    mounted() {
+      this.retrieveUserData();
+      this.checkUser();
+    },
     methods: {
+      checkUser() {
+        if (this.$route.params.userId === localStorage.getItem("userId")) {
+          this.ownProfile = true;
+        }
+      },
 
-      mounted() {
-        this.retrieveUserData();
-        console.log(this.firstName);
-        this.checkUser();
+      retrieveUserData() {
+        this.$http.get("http://localhost:4941/api/v1/users/" + this.$route.params.userId, {
+          headers: {'X-Authorization': localStorage.getItem("authToken")}
+        })
+          .then(function(response) {
+            console.log(response.data);
+            this.firstName = response.data.givenName;
+            this.lastName = response.data.familyName;
+            this.username = response.data.username;
+            this.email = response.data.email;
+          }, function(err) {
+            console.log(err);
+          });
       },
 
       exitPassEdit() {
         this.oldPassword = "";
         this.newPassword = "";
         this.passwordDialog = false;
+      },
+
+      exitNameEdit() {
+        this.retrieveUserData();
+        this.dialog = false;
       },
 
       patchPassword(patchData) {
@@ -74,12 +97,6 @@
             });
         }
       },
-
-      exitNameEdit() {
-        this.retrieveUserData();
-        this.dialog = false;
-      },
-
       saveNameEdit() {
         this.lastNameErrors = [];
         this.firstNameErrors = [];
@@ -104,32 +121,8 @@
             })
         }
       },
-
-      checkUser() {
-        if (this.$route.params.userId === localStorage.getItem("userId")) {
-          this.ownProfile = true;
-        }
-      },
-
-      retrieveUserData() {
-        this.$http.get("http://localhost:4941/api/v1/users/" + this.$route.params.userId, {
-          headers: {'X-Authorization': localStorage.getItem("authToken")}
-        })
-          .then(function(response) {
-            console.log(response.data);
-            this.firstName = response.data.givenName;
-            this.lastName = response.data.familyName;
-            this.username = response.data.username;
-            this.email = response.data.email;
-          }, function(err) {
-            console.log(err);
-          });
-      },
-
     }
   }
-
-
 </script>
 
 <template>
@@ -171,6 +164,7 @@
     </div>
     <hr>
 
+    <!--Edit Info Dialogs-->
     <v-layout row>
       <!--Edit names-->
       <template>
