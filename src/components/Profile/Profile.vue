@@ -27,8 +27,6 @@
       }
     },
     mounted: function() {
-      this.retrieveUserData();
-      this.checkUser();
     },
     methods: {
       logout() {

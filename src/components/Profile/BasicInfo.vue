@@ -47,7 +47,6 @@
           headers: {'X-Authorization': localStorage.getItem("authToken")}
         })
           .then(function(response) {
-            console.log(response.data);
             this.firstName = response.data.givenName;
             this.lastName = response.data.familyName;
             this.username = response.data.username;
