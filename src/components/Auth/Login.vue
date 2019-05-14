@@ -113,5 +113,5 @@
 </template>
 
 <style lang="css" scoped>
-  @import './../stylesheets/style.css';
+  @import '../../stylesheets/style.css';
 </style>

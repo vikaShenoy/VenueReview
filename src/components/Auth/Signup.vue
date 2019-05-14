@@ -1,6 +1,6 @@
 <script>
   const regeneratorRuntime = require("regenerator-runtime");
-  import { checkEmail } from '../util/Validate';
+  import { checkEmail } from '../../util/Validate.js';
 
   export default {
     data() {
@@ -232,7 +232,7 @@
 </template>
 
 <style lang="css" scoped>
-  @import './../stylesheets/style.css';
+  @import '../../stylesheets/style.css';
   #signup {
     align-self: center;
     padding: 20px;

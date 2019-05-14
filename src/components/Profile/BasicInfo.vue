@@ -18,17 +18,30 @@
         passwordDialog: false
       }
     },
+    /**
+     * Retrieve the user's info from the server.
+     * Check whether the user is viewing their own profile
+     * and set the ownProfile flag accordingly.
+     */
     mounted() {
       this.retrieveUserData();
       this.checkUser();
     },
     methods: {
+      /**
+       * Check if the user is viewing their own profile.
+       * Set the ownProfile flag to true if so.
+       */
       checkUser() {
         if (this.$route.params.userId === localStorage.getItem("userId")) {
           this.ownProfile = true;
         }
       },
 
+      /**
+       * Send a get request to the server for the user info.
+       * Set the data with the user data in the response body.
+       */
       retrieveUserData() {
         this.$http.get("http://localhost:4941/api/v1/users/" + this.$route.params.userId, {
           headers: {'X-Authorization': localStorage.getItem("authToken")}
@@ -44,31 +57,48 @@
           });
       },
 
+      /**
+       * Called on close of the password edit dialog.
+       * Set the fields in the dialog to empty and close the dialog.
+       */
       exitPassEdit() {
         this.oldPassword = "";
         this.newPassword = "";
         this.passwordDialog = false;
       },
 
+      /**
+       * Called on close to the name edit dialog.
+       * Re-retrieve the user's data, as no editing has been done.
+       * Close the dialog.
+       */
       exitNameEdit() {
         this.retrieveUserData();
         this.dialog = false;
       },
 
+      /**
+       * Send a patch request to edit the user's password.
+       * Close the dialog on success.
+       * @param patchData request body, contianing the user's new password.
+       */
       patchPassword(patchData) {
         let headers = {'X-Authorization': localStorage.getItem("authToken")};
 
         this.$http.patch("http://localhost:4941/api/v1/users/" + this.$route.params.userId,
           patchData, {headers: headers})
           .then(function(response) {
-            this.passwordDialog=false;
-            this.oldPassword = "";
-            this.newPassword = "";
+            this.exitPassEdit();
           }, function(error) {
             console.log(error);
           })
       },
 
+      /**
+       * Check if the user's old password is accurate by using a login request.
+       * If valid, call the patch password funtion with the user's new password.
+       * Else, show an error message.
+       */
       savePassEdit() {
         this.oldPasswordErrors = [];
         this.newPasswordErrors = [];
@@ -97,6 +127,11 @@
             });
         }
       },
+
+      /**
+       * Check fields are valid, then send a request to patch the user's name details.
+       * Show an error message if fields are empty.
+       */
       saveNameEdit() {
         this.lastNameErrors = [];
         this.firstNameErrors = [];

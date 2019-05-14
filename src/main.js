@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from './components/App.vue';
-import Signup from './components/Signup.vue';
-import Login from './components/Login.vue';
+import Signup from './components/Auth/Signup.vue';
+import Login from './components/Auth/Login.vue';
 import Home from './components/Home.vue';
 import Profile from './components/Profile/Profile.vue';
 
