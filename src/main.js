@@ -1,11 +1,10 @@
 import Vue from 'vue';
-import App from '../components/App.vue';
-import Signup from '../components/Auth/Signup.vue';
-import Login from '../components/Auth/Login.vue';
-import Home from '../components/Home.vue';
-import Profile from '../components/Profile/Profile.vue';
-import Main from '../components/Main.vue';
-import NavBar from '../components/Navbar.vue';
+import App from './components/App.vue';
+import Signup from './components/Auth/Signup.vue';
+import Login from './components/Auth/Login.vue';
+import Home from './components/Home.vue';
+import Profile from './components/Profile/Profile.vue';
+import NavBar from './components/Navbar.vue';
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -23,7 +22,9 @@ Vue.http.options.emulateJSON = true;
 const routes = [
   {
     path: "/",
-    component: Home
+    redirect: "/home",
+    component: Home,
+    name: 'Home'
   },
   {
     path: "/signup",
@@ -36,11 +37,6 @@ const routes = [
   {
     path: "/profile/:userId",
     component: Profile
-  },
-  {
-    path: "/main",
-    component: Main,
-    name: "Main"
   }
 ];
 

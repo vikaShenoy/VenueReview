@@ -1,5 +1,6 @@
 <script>
   export default {
+    name: "Home",
     data() {
       return {}
     },
@@ -19,7 +20,7 @@
   <div>
     <v-app>
       <v-container>
-        <v-layout grid-list>
+<!--        <v-layout grid-list>
           <v-flex>
             <v-card class="uk-card-header uk-padding" style="background: powderblue">
               <v-layout row>
@@ -39,7 +40,7 @@
               </v-layout>
             </v-card>
           </v-flex>
-        </v-layout>
+        </v-layout>-->
       </v-container>
     </v-app>
   </div>
