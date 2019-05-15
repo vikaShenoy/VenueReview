@@ -27,8 +27,19 @@
       }
     },
     mounted: function() {
+      this.checkUser();
     },
     methods: {
+      /**
+       * Check if the user is viewing their own profile.
+       * Set the ownProfile flag to true if so.
+       */
+      checkUser() {
+        if (this.$route.params.userId === localStorage.getItem("userId")) {
+          this.ownProfile = true;
+        }
+      },
+
       logout() {
         this.$http.post("http://localhost:4941/api/v1/users/logout", {}, {
           headers: {'X-Authorization': localStorage.getItem("authToken")}
@@ -70,12 +81,12 @@
 
         <!--Profile info card-->
           <v-flex>
-            <BasicInfo/>
+            <BasicInfo :ownProfile="ownProfile"/>
           </v-flex>
 
         <!--Photo card-->
           <v-flex>
-            <ProfilePicture/>
+            <ProfilePicture :ownProfile="ownProfile"/>
           </v-flex>
         </v-layout>
       </v-container>

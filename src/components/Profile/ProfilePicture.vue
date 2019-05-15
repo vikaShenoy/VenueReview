@@ -2,9 +2,16 @@
   const rootUrl = "http://localhost:4941/api/v1/users/";
 
   export default {
+
+    props: {
+      ownProfile: {
+        type: Boolean,
+        required: true,
+      }
+    },
+
     data() {
       return {
-        ownProfile: false,
         profilePicData: null,
         imageType: null,
         reader: null,
@@ -15,6 +22,10 @@
       }
     },
 
+
+    /**
+     * Call the get endpoint to load the user's profile photo.
+     */
     mounted() {
       this.getProfilePhoto();
     },
@@ -147,7 +158,7 @@
 <template>
   <v-card class="uk-card uk-padding" style="margin: 10px">
 
-      <v-layout row>
+      <v-layout v-if="ownProfile" row>
 
         <input type="file" @change="onFileChanged" accept=".jpeg, .png, .jpg">
 
@@ -180,10 +191,9 @@
         </template>
 
       </v-layout>
-
-    <img id="profilePhoto"
-         alt=""
-         :src="'http://localhost:4941/api/v1/users/' + this.$route.params.userId + '/photo'"/>
+      <img id="profilePhoto"
+           alt=""
+           :src="'http://localhost:4941/api/v1/users/' + this.$route.params.userId + '/photo'"/>
 
   </v-card>
 </template>

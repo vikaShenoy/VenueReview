@@ -1,6 +1,14 @@
 <script>
 
   export default {
+
+    props: {
+      ownProfile: {
+        type: Boolean,
+        required: true,
+      }
+    },
+
     data() {
       return {
         firstName: "",
@@ -13,7 +21,6 @@
         newPasswordErrors: [],
         firstNameErrors: [],
         lastNameErrors: [],
-        ownProfile: false,
         dialog: false,
         passwordDialog: false
       }
@@ -25,18 +32,8 @@
      */
     mounted() {
       this.retrieveUserData();
-      this.checkUser();
     },
     methods: {
-      /**
-       * Check if the user is viewing their own profile.
-       * Set the ownProfile flag to true if so.
-       */
-      checkUser() {
-        if (this.$route.params.userId === localStorage.getItem("userId")) {
-          this.ownProfile = true;
-        }
-      },
 
       /**
        * Send a get request to the server for the user info.
@@ -188,7 +185,7 @@
     <hr>
 
 
-    <div v-if="this.ownProfile">
+    <div v-if="ownProfile">
       <v-layout row>
         <h4 class="font-weight-light">Email</h4>
         <v-spacer align="right">
@@ -199,7 +196,7 @@
     <hr>
 
     <!--Edit Info Dialogs-->
-    <v-layout row>
+    <v-layout v-if="ownProfile" row>
       <!--Edit names-->
       <template>
         <v-layout row justify-center>
@@ -231,6 +228,7 @@
           </v-dialog>
         </v-layout>
       </template>
+
       <!--Edit password-->
       <template>
         <v-layout row justify-center>
