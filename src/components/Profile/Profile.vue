@@ -59,7 +59,6 @@
 
                 <v-spacer align="right">
                   <v-btn
-                    depressed
                     @click="logout()"
                   >Logout</v-btn>
                 </v-spacer>

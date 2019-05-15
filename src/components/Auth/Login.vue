@@ -101,7 +101,6 @@
           <br>
 
           <v-btn
-            depressed
             @click="login()"
             >Login</v-btn>
 

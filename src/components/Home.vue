@@ -28,12 +28,10 @@
 
                 <v-spacer align="right">
                   <v-btn
-                    depressed
                     @click="login()"
                   >Login</v-btn>
 
                   <v-btn
-                    depressed
                     @click="signUp()"
                   >Sign Up</v-btn>
 
