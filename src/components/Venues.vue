@@ -20,6 +20,7 @@
         allVenues: [],
         selectedVenues: [],
         cities: [],
+        searchTerm: "",
       }
     },
     mounted: function() {
@@ -89,6 +90,24 @@
         } else {
           this.selectedVenues = this.allVenues;
         }
+      },
+      searchVenues() {
+        console.log("Search term = " + this.searchTerm);
+        let headers = {
+          'X-Authorization': localStorage.getItem("authToken")
+        };
+        if (this.searchTerm.length !== 0) {
+          this.$http.get("http://localhost:4941/api/v1/venues?q=" + this.searchTerm, {
+            headers: headers
+          })
+            .then(function(response) {
+              this.selectedVenues = response.body;
+            }, function(error) {
+              console.log(error);
+            })
+        } else {
+          this.selectedVenues = this.allVenues;
+        }
       }
     },
   }
@@ -107,6 +126,11 @@
               label="City"
               @change="filterCities($event)"
             ></v-select>
+            <v-text-field
+              v-model="searchTerm"
+              label="Search"
+              @blur="searchVenues()"
+            ></v-text-field>
           </v-flex>
         </v-layout>
         <v-data-table
@@ -121,7 +145,10 @@
             <td class="text-xs-right">{{ props.item.city }}</td>
             <td class="text-xs-right">{{ props.item.meanStarRating }}</td>
             <td class="text-xs-right">{{ props.item.modeCostRating }}</td>
-            <td class="text-xs-right">{{ props.item.photoData }}</td>
+<!--            <td class="text-xs-right">{{ props.item.photoData }}</td>-->
+            <td>
+              <img :src="props.item.photoData">
+            </td>
           </template>
         </v-data-table>
       </v-card>
