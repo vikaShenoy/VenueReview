@@ -37,6 +37,11 @@ const routes = [
   {
     path: "/profile/:userId",
     component: Profile
+  },
+  {
+    path: "/home",
+    component: Home,
+    name: "Home"
   }
 ];
 

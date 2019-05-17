@@ -10,28 +10,87 @@
 
       <v-toolbar dark>
         <v-spacer>
-          <v-toolbar-title>{{}}</v-toolbar-title>
+          <v-toolbar-title>Travel Site</v-toolbar-title>
         </v-spacer>
 
         <v-toolbar-items>
-          <v-btn flat>Profile</v-btn>
-          <v-btn flat>Login</v-btn>
-          <v-btn flat>Signup</v-btn>
+          <v-btn
+            v-if="loggedIn"
+            flat
+            @click="loadHome()"
+          >Home</v-btn>
+          <v-btn
+            v-if="loggedIn"
+            flat
+            @click="loadProfile()"
+          >Profile</v-btn>
+          <v-btn
+            v-if="!loggedIn"
+            flat
+            @click="loadLogin()"
+          >Login</v-btn>
+          <v-btn
+            v-if="loggedIn"
+            flat
+            @click="logoutUser()"
+          >Logout</v-btn>
+          <v-btn
+            v-if="!loggedIn"
+            flat
+            @click="loadSignup()"
+          >Signup</v-btn>
         </v-toolbar-items>
       </v-toolbar>
-
-
-
     </v-layout>
-
   </div>
 </template>
 
 <script>
     export default {
       name: "Navbar",
+      mounted: function() {
+        console.log(1);
+        this.checkLogin();
+      },
+      watch:{
+        $route (to, from){
+          this.checkLogin();
+        }
+      },
+      methods: {
+        checkLogin() {
+          if (localStorage.getItem("userId") !== 'null') {
+            this.loggedIn = true;
+          } else {
+            this.loggedIn = false;
+          }
+        },
+        logoutUser() {
+          localStorage.setItem("userId", null);
+          localStorage.setItem("authToken", null);
+          this.$router.push('/home');
+          this.checkLogin();
+        },
+        loadSignup() {
+          this.$router.push('/signup');
+        },
+        loadLogin() {
+          this.$router.push('/login');
+        },
+        loadProfile() {
+          this.$router.push('/profile/' + localStorage.getItem('userId'));
+        },
+        loadHome() {
+          console.log("Home button function called.");
+          this.$router.push('/home');
+        }
+      },
       data() {
         return {
+          showHome: false,
+          showProfile: false,
+          showSignup: false,
+          loggedIn: false,
           links: [
             {
               id: 0,

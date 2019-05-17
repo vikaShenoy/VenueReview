@@ -169,10 +169,6 @@
     <v-app style="background: mintcream">
       <v-container>
 
-        <v-card class="uk-card-header" style="background: powderblue">
-          <h2 class="headings">Sign Up</h2>
-        </v-card>
-
         <v-card class="padding">
           <v-text-field
             v-model="firstName"

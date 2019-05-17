@@ -1,8 +1,15 @@
 <script>
+
+  import Venues from "./Venues.vue";
+
+
   export default {
     name: "Home",
+    components: {Venues},
     data() {
       return {}
+    },
+    mounted: function() {
     },
     methods: {
       signUp() {
@@ -20,27 +27,12 @@
   <div>
     <v-app>
       <v-container>
-<!--        <v-layout grid-list>
-          <v-flex>
-            <v-card class="uk-card-header uk-padding" style="background: powderblue">
-              <v-layout row>
 
-                <h2 class="headings">Travel Site</h2>
+        <!--Venue component-->
+        <v-flex>
+          <Venues v-if=""/>
+        </v-flex>
 
-                <v-spacer align="right">
-                  <v-btn
-                    @click="login()"
-                  >Login</v-btn>
-
-                  <v-btn
-                    @click="signUp()"
-                  >Sign Up</v-btn>
-
-                </v-spacer>
-              </v-layout>
-            </v-card>
-          </v-flex>
-        </v-layout>-->
       </v-container>
     </v-app>
   </div>

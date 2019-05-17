@@ -70,11 +70,6 @@
   <div>
     <v-app style="background: mintcream">
       <v-container>
-
-        <v-card class="uk-card uk-card-header" style="background: powderblue">
-          <h2 class="headings">Login</h2>
-        </v-card>
-
         <v-card class="padding">
 
           <v-text-field
