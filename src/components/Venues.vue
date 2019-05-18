@@ -27,7 +27,9 @@
         categoryList: [],
         selectedSearchTerm: "",
         selectedCity: "",
-        selectedCategory: ""
+        selectedCategory: "",
+        selectedStarRating: "",
+        selectedCostRating: "",
       }
     },
     mounted: function() {
@@ -51,6 +53,26 @@
           filteredVenues = filteredVenues.filter(
             venue => venue.category.categoryName.toLowerCase() === this.selectedCategory.toLowerCase());
         }
+
+        if (this.selectedStarRating) {
+          filteredVenues = filteredVenues.filter(
+            venue => venue.meanStarRating > this.selectedStarRating
+          );
+        }
+
+        if (this.selectedCostRating) {
+          console.log(1);
+          console.log(this.selectedCostRating);
+          let maxCostRating = 0;
+          if (this.selectedCostRating === "$") maxCostRating = 1;
+          else if (this.selectedCostRating === "$$") maxCostRating = 2;
+          else if (this.selectedCostRating === "$$$") maxCostRating = 3;
+          else if (this.selectedCostRating === "$$$$") maxCostRating = 4;
+          filteredVenues = filteredVenues.filter(
+            venue => venue.modeCostRating <= maxCostRating
+          );
+        }
+
         return filteredVenues;
       }
     },
@@ -116,7 +138,7 @@
     <v-flex lg12>
       <v-card dark min-width="120">
         <v-layout row>
-          <v-flex xs12 sm6 d-flex>
+          <v-flex  d-flex>
             <v-select
               box
               :items="cityList"
@@ -130,6 +152,19 @@
               label="Category"
               placeholder="Category"
               v-model="selectedCategory"
+            ></v-select>
+            <v-select
+              box
+              :items="['', 1,2,3, 4, 5]"
+              label="Minimum Star Rating"
+              placeholder="Minimum Star Rating"
+              v-model="selectedStarRating"
+            ></v-select>
+            <v-select
+              box
+              :items="['', 'Free', '$', '$$', '$$$', '$$$$']"
+              label="Maximum Cost Rating"
+              v-model="selectedCostRating"
             ></v-select>
             <v-text-field
               v-model="selectedSearchTerm"
