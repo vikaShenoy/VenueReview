@@ -4,6 +4,10 @@
     data () {
       return {
         name: "Venues.vue",
+        rowsPerPageItems: [10],
+        pagination: {
+          rowsPerPage: 10
+        },
         headers: [
           {
             text: 'Venue',
@@ -31,7 +35,6 @@
     },
     computed: {
       filterTableData() {
-        console.log(this.selectedCity);
         let filteredVenues = this.unfilteredVenues;
 
         if (this.selectedSearchTerm) {
@@ -76,8 +79,23 @@
             headers: headers
           })
             .then(function(response) {
-              response.body.meanStarRating = venues[i].meanStarRating;
               response.body.modeCostRating = venues[i].modeCostRating;
+
+              // Split this up in to a new function
+              // Handle default star and cost ratings
+              if (venues[i].meanStarRating === null) {
+                response.body.meanStarRating = 3;
+              } else {
+                response.body.meanStarRating = venues[i].meanStarRating;
+              }
+
+              if (venues[i].modeCostRating === null) {
+                response.body.modeCostRating = 0;
+              } else {
+                response.body.modeCostRating = venues[i].modeCostRating;
+              }
+
+              // Populate drop down lists
               this.cityList.push(response.body.city);
               this.categoryList.push(response.body.category.categoryName);
               venueList.push(response.body);
@@ -85,24 +103,10 @@
               console.log(error);
             })
         }
-        this.unfilteredVenues = venueList;
-        //this.getCategories();
-      },
-
-      getCities() {
-        console.log(10);
-        let venues = this.unfilteredVenues;
-        console.log(this.unfilteredVenues);
-        this.cityList = venues.map(venue => venue.city);
         this.cityList.unshift("");
-        console.log(this.cityList);
-      },
-
-      getCategories() {
-        let venues = this.unfilteredVenues;
-        this.categoryList = venues.map(venue => venue.category.categoryName);
         this.categoryList.unshift("");
-      }
+        this.unfilteredVenues = venueList;
+      },
     },
   }
 </script>
@@ -114,15 +118,17 @@
         <v-layout row>
           <v-flex xs12 sm6 d-flex>
             <v-select
-              solo
+              box
               :items="cityList"
               label="City"
+              placeholder="City"
               v-model="selectedCity"
             ></v-select>
             <v-select
-              solo
+              box
               :items="categoryList"
               label="Category"
+              placeholder="Category"
               v-model="selectedCategory"
             ></v-select>
             <v-text-field
@@ -134,7 +140,10 @@
         <v-data-table
           :headers="headers"
           :items="filterTableData"
+          :rows-per-page-items="rowsPerPageItems"
+          :pagination.sync="pagination"
           class="elevation-1"
+          must-sort
           dark
         >
           <template v-slot:items="props">
