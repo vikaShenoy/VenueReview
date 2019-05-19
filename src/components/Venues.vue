@@ -1,4 +1,4 @@
-<script>
+<script xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   import 'material-design-icons-iconfont/dist/material-design-icons.css';
   let rootUrl = "http://localhost:4941/api/v1";
   export default {
@@ -9,6 +9,7 @@
         pagination: {
           rowsPerPage: 10
         },
+        expand: false,
         headers: [
           {
             text: 'Venue',
@@ -177,6 +178,7 @@
         this.cityList.unshift("");
         this.categoryList.unshift("");
         venueList.sort((a, b) => a.meanStarRating - b.meanStarRating);
+        console.log(venueList);
         this.unfilteredVenues = venueList;
       },
 
@@ -229,6 +231,12 @@
 
         <v-layout row>
           <v-flex  d-flex>
+            <v-text-field
+              box
+              v-model="selectedSearchTerm"
+              label="Search"
+              placeholder=" "
+            ></v-text-field>
             <v-select
               box
               :items="cityList"
@@ -256,37 +264,52 @@
               label="Maximum Cost Rating"
               v-model="selectedCostRating"
             ></v-select>
-            <v-text-field
-              v-model="selectedSearchTerm"
-              label="Search"
-            ></v-text-field>
           </v-flex>
         </v-layout>
+        <div>
         <v-data-table
           :headers="headers"
           :items="filterTableData"
+          :expand="expand"
           :rows-per-page-items="rowsPerPageItems"
           :pagination.sync="pagination"
+          item-key="venueName"
           class="elevation-1"
           must-sort
           dark
+          expand
         >
           <template v-slot:items="props">
+            <tr @click="props.expanded = !props.expanded">
             <td>{{ props.item.venueName }}</td>
             <td class="text-xs-right">{{ props.item.category.categoryName }}</td>
             <td class="text-xs-right">{{ props.item.city }}</td>
             <td class="text-xs-right">{{ props.item.meanStarRating }}</td>
             <td class="text-xs-right">{{ props.item.modeCostRating }}</td>
             <td class="text-xs-right">{{ props.item.distance }}</td>
-            <td>
-              <img :src="props.item.photo">
-            </td>
+            <td><img :src="props.item.photo"></td>
+            </tr>
+          </template>
+          <template v-slot:expand="props">
+            <v-card flat>
+              <v-card-text>{{props.item.venueName}}</v-card-text>
+              <v-card-text>{{props.item.category.categoryName}}</v-card-text>
+              <v-card-text>{{props.item.admin.username}}</v-card-text>
+              <v-card-text>{{props.item.city}}</v-card-text>
+              <v-card-text>{{props.item.address}}</v-card-text>
+              <v-card-text>{{props.item.shortDescription}}</v-card-text>
+              <v-card-text>{{props.item.longDescription}}</v-card-text>
+              <v-card-text>{{props.item.meanStarRating}}</v-card-text>
+              <v-card-text>{{props.item.modeCostRating}}</v-card-text>
+              <v-card-text>ADD PHOTOS HERE</v-card-text>
+
+            </v-card>
           </template>
         </v-data-table>
+        </div>
       </v-card>
     </v-flex>
   </v-layout>
-
 </template>
 
 <style scoped>
