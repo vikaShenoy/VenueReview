@@ -49,7 +49,6 @@
     export default {
       name: "Navbar",
       mounted: function() {
-        console.log(1);
         this.checkLogin();
       },
       watch:{

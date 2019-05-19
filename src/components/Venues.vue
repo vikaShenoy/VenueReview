@@ -1,5 +1,6 @@
 <script>
   import 'material-design-icons-iconfont/dist/material-design-icons.css';
+  let rootUrl = "http://localhost:4941/api/v1";
   export default {
     data () {
       return {
@@ -19,6 +20,7 @@
           { text: 'City', value: 'city' },
           { text: 'Star Rating (Mean)', value: 'meanStarRating' },
           { text: 'Cost Rating (Mode)', value: 'modeCostRating' },
+          { text: 'Distance (km)', value: 'distance' },
           { text: 'Photo', value: 'photoData' }
         ],
         unfilteredVenues: [],
@@ -30,10 +32,14 @@
         selectedCategory: "",
         selectedStarRating: "",
         selectedCostRating: "",
+        snackbar: false,
+        snackbarText: "",
+        latitude: null,
+        longitude: null,
       }
     },
     mounted: function() {
-      this.setup();
+      this.getLocation();
     },
     computed: {
       filterTableData() {
@@ -77,18 +83,47 @@
       }
     },
     methods: {
-      setup() {
+      getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.savePosition, this.showLocationError);
+        } else {
+          console.log("Browser doesn't support geolocation");
+        }
+      },
+
+      savePosition(position) {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.getAllVenues();
+      },
+
+      showLocationError(error) {
+        console.log(error);
+        this.snackbar = true;
+        this.snackbarText = error.message;
+
+      },
+
+      getAllVenues() {
         let headers = {
           'X-Authorization': localStorage.getItem("authToken")
         };
-        this.$http.get("http://localhost:4941/api/v1/venues", {
+        let url = rootUrl + "/venues";
+
+        if (this.latitude != null) {
+          url += "?myLatitude=" + this.latitude + "&myLongitude=" + this.longitude;
+        }
+
+        console.log(url);
+        this.$http.get(url, {
           headers: headers
         })
           .then(function(response) {
+            console.log(response.body);
             this.getVenueDetails(response.body);
           }, function(error) {
             console.log(error);
-          })
+          });
       },
 
       getVenueDetails(venues) {
@@ -97,7 +132,7 @@
         };
         let venueList = [];
         for (let i = 0 ; i < venues.length ; i++) {
-          this.$http.get("http://localhost:4941/api/v1/venues/" + venues[i].venueId, {
+          this.$http.get(rootUrl + "/venues/" + venues[i].venueId, {
             headers: headers
           })
             .then(function(response) {
@@ -105,17 +140,13 @@
 
               // Split this up in to a new function
               // Handle default star and cost ratings
-              if (venues[i].meanStarRating === null) {
-                response.body.meanStarRating = 3;
-              } else {
-                response.body.meanStarRating = venues[i].meanStarRating;
-              }
+              if (venues[i].meanStarRating === null) response.body.meanStarRating = 3;
+              else response.body.meanStarRating = venues[i].meanStarRating;
 
-              if (venues[i].modeCostRating === null) {
-                response.body.modeCostRating = 0;
-              } else {
-                response.body.modeCostRating = venues[i].modeCostRating;
-              }
+              if (venues[i].modeCostRating === null) response.body.modeCostRating = 0;
+              else response.body.modeCostRating = venues[i].modeCostRating;
+
+              if (venues[i].distance) response.body.distance = venues[i].distance.toFixed(2);
 
               // Populate drop down lists
               this.cityList.push(response.body.city);
@@ -137,6 +168,21 @@
   <v-layout gridlist>
     <v-flex lg12>
       <v-card dark min-width="120">
+
+        <v-snackbar
+          v-model="snackbar"
+          :timeout="5000"
+        >
+          {{ snackbarText }}
+          <v-btn
+            color="pink"
+            flat
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </v-snackbar>
+
         <v-layout row>
           <v-flex  d-flex>
             <v-select
@@ -187,6 +233,8 @@
             <td class="text-xs-right">{{ props.item.city }}</td>
             <td class="text-xs-right">{{ props.item.meanStarRating }}</td>
             <td class="text-xs-right">{{ props.item.modeCostRating }}</td>
+            <td class="text-xs-right">{{ props.item.distance }}</td>
+            <td class="text-xs-right">{{ props.item.meanStarRating }}</td>
             <td>
               <img :src="props.item.photoData">
             </td>
