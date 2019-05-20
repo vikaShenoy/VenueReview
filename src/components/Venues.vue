@@ -38,6 +38,7 @@
         expandVenue: false,
         latitude: null,
         longitude: null,
+        showMyVenues: false,
       }
     },
     mounted: function() {
@@ -77,6 +78,12 @@
           else if (this.selectedCostRating === "$$$$") maxCostRating = 4;
           filteredVenues = filteredVenues.filter(
             venue => venue.modeCostRating <= maxCostRating
+          );
+        }
+
+        if (this.showMyVenues) {
+          filteredVenues = filteredVenues.filter(
+            venue => venue.admin.userId.toString() === localStorage.getItem("userId")
           );
         }
         return filteredVenues;
@@ -241,7 +248,7 @@
         </v-snackbar>
 
         <v-layout row>
-          <v-flex  d-flex>
+          <v-flex d-flex>
             <v-text-field
               box
               v-model="selectedSearchTerm"
@@ -277,6 +284,11 @@
             ></v-select>
           </v-flex>
         </v-layout>
+        <v-switch
+          v-model="showMyVenues"
+          :label="`My Venues`"
+          color="white"
+        ></v-switch>
         <div>
         <v-data-table
           :headers="headers"
@@ -412,8 +424,6 @@
                         <v-card-text>{{item.reviewBody}}</v-card-text>
                       </v-layout>
                     </v-flex>
-
-
                   </v-layout>
                 </v-card>
               </div>

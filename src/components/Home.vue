@@ -30,7 +30,7 @@
 
         <!--Venue component-->
         <v-flex>
-          <Venues v-if=""/>
+          <Venues/>
         </v-flex>
 
       </v-container>

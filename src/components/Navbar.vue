@@ -1,3 +1,75 @@
+<script>
+  export default {
+    name: "Navbar",
+    mounted: function() {
+      this.checkLogin();
+    },
+    watch:{
+      $route (to, from){
+        this.checkLogin();
+      }
+    },
+    methods: {
+      checkLogin() {
+        //Remove item
+        if (localStorage.getItem("userId") !== 'null') {
+          console.log(100);
+          console.log(localStorage.getItem("userId") !== null);
+          console.log(localStorage.getItem("userId") !== 'null');
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
+      },
+      logoutUser() {
+        localStorage.setItem("userId", null);
+        localStorage.setItem("authToken", null);
+        this.$router.push('/home');
+        this.checkLogin();
+      },
+      loadSignup() {
+        this.$router.push('/signup');
+      },
+      loadLogin() {
+        this.$router.push('/login');
+      },
+      loadProfile() {
+        this.$router.push('/profile/' + localStorage.getItem('userId'));
+      },
+      loadHome() {
+        console.log("Home button function called.");
+        this.$router.push('/home');
+      }
+    },
+    data() {
+      return {
+        showHome: false,
+        showProfile: false,
+        showSignup: false,
+        loggedIn: false,
+        links: [
+          {
+            id: 0,
+            text: 'Profile',
+            page: '/Profile/' + localStorage.getItem('userId')
+          },
+          {
+            id: 1,
+            text: 'Sign Up',
+            page: '/Signup'
+          },
+          {
+            id: 2,
+            text: 'Login',
+            page: '/Login'
+          }
+        ]
+      }
+    }
+  }
+</script>
+
+
 <template>
   <div>
     <v-layout row>
@@ -44,74 +116,6 @@
     </v-layout>
   </div>
 </template>
-
-<script>
-    export default {
-      name: "Navbar",
-      mounted: function() {
-        this.checkLogin();
-      },
-      watch:{
-        $route (to, from){
-          this.checkLogin();
-        }
-      },
-      methods: {
-        checkLogin() {
-          //Remove item
-          if (localStorage.getItem("userId") !== 'null') {
-            this.loggedIn = true;
-          } else {
-            this.loggedIn = false;
-          }
-        },
-        logoutUser() {
-          localStorage.setItem("userId", null);
-          localStorage.setItem("authToken", null);
-          this.$router.push('/home');
-          this.checkLogin();
-        },
-        loadSignup() {
-          this.$router.push('/signup');
-        },
-        loadLogin() {
-          this.$router.push('/login');
-        },
-        loadProfile() {
-          this.$router.push('/profile/' + localStorage.getItem('userId'));
-        },
-        loadHome() {
-          console.log("Home button function called.");
-          this.$router.push('/home');
-        }
-      },
-      data() {
-        return {
-          showHome: false,
-          showProfile: false,
-          showSignup: false,
-          loggedIn: false,
-          links: [
-            {
-              id: 0,
-              text: 'Profile',
-              page: '/Profile/' + localStorage.getItem('userId')
-            },
-            {
-              id: 1,
-              text: 'Sign Up',
-              page: '/Signup'
-            },
-            {
-              id: 2,
-              text: 'Login',
-              page: '/Login'
-            }
-          ]
-        }
-      }
-    }
-</script>
 
 <style scoped>
 
