@@ -22,7 +22,7 @@
         firstNameErrors: [],
         lastNameErrors: [],
         dialog: false,
-        passwordDialog: false
+        passwordDialog: false,
       }
     },
     /**

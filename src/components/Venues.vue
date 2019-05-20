@@ -35,7 +35,7 @@
         selectedCostRating: "",
         snackbar: false,
         snackbarText: "",
-        showlongDescription: false,
+        expandVenue: false,
         latitude: null,
         longitude: null,
       }
@@ -69,7 +69,6 @@
         }
 
         if (this.selectedCostRating) {
-          console.log(1);
           console.log(this.selectedCostRating);
           let maxCostRating = 0;
           if (this.selectedCostRating === "$") maxCostRating = 1;
@@ -80,7 +79,6 @@
             venue => venue.modeCostRating <= maxCostRating
           );
         }
-
         return filteredVenues;
       }
     },
@@ -92,6 +90,18 @@
        */
       setup() {
         this.getLocation();
+      },
+
+      getVenueReviews(item, venueId) {
+        console.log(item);
+        let headers = {'X-Authorization': localStorage.getItem("authToken")};
+        console.log(50);
+        this.$http.get("http://localhost:4941/api/v1/venues/" + venueId + "/reviews", {headers: headers})
+          .then(function(response) {
+            item.reviews = response.body;
+          }, function(error) {
+            console.log(error);
+          });
       },
 
       /**
@@ -134,9 +144,7 @@
        * for that venue.
        */
       getAllVenues() {
-        let headers = {
-          'X-Authorization': localStorage.getItem("authToken")
-        };
+        let headers = {'X-Authorization': localStorage.getItem("authToken")};
         let url = rootUrl + "/venues";
         if (this.latitude != null) url += "?myLatitude=" + this.latitude + "&myLongitude=" + this.longitude;
         this.$http.get(url, {
@@ -157,9 +165,7 @@
        * @param venues response body from the get venues request
        */
       getVenueDetails(venues) {
-        let headers = {
-          'X-Authorization': localStorage.getItem("authToken")
-        };
+        let headers = {'X-Authorization': localStorage.getItem("authToken")};
         let venueList = [];
         for (let i = 0 ; i < venues.length ; i++) {
           let initialData = venues[i];
@@ -179,8 +185,8 @@
         this.cityList.unshift("");
         this.categoryList.unshift("");
         venueList.sort((a, b) => a.meanStarRating - b.meanStarRating);
-        console.log(venueList);
         this.unfilteredVenues = venueList;
+        console.log(1);
       },
 
       /**
@@ -191,6 +197,7 @@
        */
       processVenueData(initialData, responseData) {
         let tableData = responseData;
+        tableData.venueId = initialData.venueId;
 
         if (initialData.meanStarRating === null) tableData.meanStarRating = 3;
         else tableData.meanStarRating = initialData.meanStarRating;
@@ -199,7 +206,8 @@
         else tableData.modeCostRating = initialData.modeCostRating;
 
         if (initialData.distance) tableData.distance = initialData.distance.toFixed(2);
-        if (responseData.longDescription.length === 0) tableData.longDescription = "No long description added.";
+        if (responseData.longDescription.length === 0) tableData.longDescription =
+          "No additional description available.";
 
         if (initialData.primaryPhoto) {
           tableData.photo = rootUrl + "/venues/" + initialData.venueId +
@@ -283,59 +291,133 @@
           expand
         >
           <template v-slot:items="props">
-            <tr @click="props.expanded = !props.expanded">
+            <tr @click="props.expanded = !props.expanded ; getVenueReviews(props.item, props.item.venueId)">
             <td>{{ props.item.venueName }}</td>
             <td class="text-xs-right">{{ props.item.category.categoryName }}</td>
             <td class="text-xs-right">{{ props.item.city }}</td>
             <td class="text-xs-right">{{ props.item.meanStarRating }}</td>
             <td class="text-xs-right">{{ props.item.modeCostRating }}</td>
             <td class="text-xs-right">{{ props.item.distance }}</td>
-            <td><img :src="props.item.photo"></td>
+            <td><img height="200" width="200" :src="props.item.photo"></td>
             </tr>
           </template>
 
           <template v-slot:expand="props">
-            <v-card color="#3f363f">
+            <v-card color="#3f363f" class="padding">
+
+              <v-layout row>
+                <v-card-title class="uk-text-large">
+                  {{props.item.venueName}}
+                </v-card-title>
+                <v-spacer align="end">
+                  <v-btn
+                    color="red"
+                    @click="expandVenue = !expandVenue"
+                  >Expand</v-btn>
+                  <v-btn
+                    color="red"
+                    @click="expandVenue = !expandVenue"
+                  >Add Review</v-btn>
+                </v-spacer>
+              </v-layout>
+
               <v-layout grid-list>
+
                 <v-flex xs2>
                   <v-layout column>
-                    <v-card-text>Name</v-card-text>
                     <v-card-text>Category</v-card-text>
                     <v-card-text>Admin</v-card-text>
                     <v-card-text>City</v-card-text>
+                    <v-card-text>Star Rating (mean)</v-card-text>
+                    <v-card-text>Cost Rating (mode)</v-card-text>
                     <v-card-text>Address</v-card-text>
-                    <v-card-text>Date</v-card-text>
-                    <v-card-text>Short Description</v-card-text>
-                    <v-card-text v-if="showlongDescription">Long Description</v-card-text>
-                    <v-flex xs1>
-                      <v-btn
-                      @click="showlongDescription = !showlongDescription"
-                      >Expand</v-btn>
-                    </v-flex>
-                  </v-layout>
-                </v-flex>
-                <hr>
-
-                <v-flex xs4>
-                  <v-layout column>
-                    <v-card-text>{{props.item.venueName}}</v-card-text>
-                    <v-card-text>{{props.item.category.categoryName}}</v-card-text>
-                    <v-card-text>{{props.item.admin.username}}</v-card-text>
-                    <v-card-text>{{props.item.city}}</v-card-text>
-                    <v-card-text>{{props.item.address}}</v-card-text>
-                    <v-card-text>{{props.item.dateAdded.split('T')[0]}}</v-card-text>
-                    <v-card-text>{{props.item.shortDescription}}</v-card-text>
-                    <v-card-text v-if="showlongDescription">{{props.item.longDescription}}</v-card-text>
+                    <v-card-text>Date Added</v-card-text>
+                    <v-card-text>Description</v-card-text>
                   </v-layout>
                 </v-flex>
 
                 <v-flex>
-                  <v-layout>
+                  <v-layout column>
+                    <v-card-text>{{props.item.category.categoryName}}</v-card-text>
+                    <v-card-text>{{props.item.admin.username}}</v-card-text>
+                    <v-card-text>{{props.item.city}}</v-card-text>
+                    <v-card-text>{{props.item.meanStarRating}}</v-card-text>
+                    <v-card-text>{{props.item.modeCostRating}}</v-card-text>
+                    <v-card-text>{{props.item.address}}</v-card-text>
+                    <v-card-text>{{props.item.dateAdded.split('T')[0]}}</v-card-text>
+                    <v-card-text>
+                      {{props.item.shortDescription}}
+                      <div v-if="expandVenue">
+                        {{props.item.longDescription}}
+                      </div>
+                    </v-card-text>
                   </v-layout>
                 </v-flex>
 
             </v-layout>
 
+            <v-container v-if="expandVenue" grid-list-sm fluid>
+              <v-layout row wrap>
+                <v-flex
+                  v-for="item in props.item.photos"
+                  :key="item.photoFilename"
+                  xs2
+                  d-flex
+                >
+                  <v-card flat tile class="d-flex">
+                    <v-img
+                      :src="'http://localhost:4941/api/v1/venues/' + props.item.venueId + '/photos/' + item.photoFilename"
+                      aspect-ratio="1"
+                      class="grey lighten-2"
+                    >
+                      <template v-slot:placeholder>
+                        <v-layout
+                          fill-height
+                          align-center
+                          justify-center
+                          ma-0
+                        >
+                          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        </v-layout>
+                      </template>
+                    </v-img>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
+
+
+            <v-container v-if="expandVenue">
+              <v-card-title class="uk-text-large">Reviews</v-card-title>
+              <div v-for="item in props.item.reviews">
+                <v-card class="padding" style="margin: 10px" color="dark">
+                  <v-layout grid-list>
+
+                    <v-flex xs2>
+                      <v-layout column>
+                        <v-card-text>Reviewer</v-card-text>
+                        <v-card-text>Star Rating</v-card-text>
+                        <v-card-text>Cost Rating</v-card-text>
+                        <v-card-text>Time Posted</v-card-text>
+                        <v-card-text>Review</v-card-text>
+                      </v-layout>
+                    </v-flex>
+
+                    <v-flex xs8>
+                      <v-layout column>
+                        <v-card-text>{{item.reviewAuthor.username}}</v-card-text>
+                        <v-card-text>{{item.starRating}}</v-card-text>
+                        <v-card-text>{{item.costRating}}</v-card-text>
+                        <v-card-text>{{item.timePosted}}</v-card-text>
+                        <v-card-text>{{item.reviewBody}}</v-card-text>
+                      </v-layout>
+                    </v-flex>
+
+
+                  </v-layout>
+                </v-card>
+              </div>
+            </v-container>
 
 
             </v-card>
