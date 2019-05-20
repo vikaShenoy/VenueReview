@@ -35,6 +35,7 @@
         selectedCostRating: "",
         snackbar: false,
         snackbarText: "",
+        showlongDescription: false,
         latitude: null,
         longitude: null,
       }
@@ -190,6 +191,7 @@
        */
       processVenueData(initialData, responseData) {
         let tableData = responseData;
+
         if (initialData.meanStarRating === null) tableData.meanStarRating = 3;
         else tableData.meanStarRating = initialData.meanStarRating;
 
@@ -197,6 +199,7 @@
         else tableData.modeCostRating = initialData.modeCostRating;
 
         if (initialData.distance) tableData.distance = initialData.distance.toFixed(2);
+        if (responseData.longDescription.length === 0) tableData.longDescription = "No long description added.";
 
         if (initialData.primaryPhoto) {
           tableData.photo = rootUrl + "/venues/" + initialData.venueId +
@@ -290,18 +293,50 @@
             <td><img :src="props.item.photo"></td>
             </tr>
           </template>
+
           <template v-slot:expand="props">
-            <v-card flat>
-              <v-card-text>{{props.item.venueName}}</v-card-text>
-              <v-card-text>{{props.item.category.categoryName}}</v-card-text>
-              <v-card-text>{{props.item.admin.username}}</v-card-text>
-              <v-card-text>{{props.item.city}}</v-card-text>
-              <v-card-text>{{props.item.address}}</v-card-text>
-              <v-card-text>{{props.item.shortDescription}}</v-card-text>
-              <v-card-text>{{props.item.longDescription}}</v-card-text>
-              <v-card-text>{{props.item.meanStarRating}}</v-card-text>
-              <v-card-text>{{props.item.modeCostRating}}</v-card-text>
-              <v-card-text>ADD PHOTOS HERE</v-card-text>
+            <v-card color="#3f363f">
+              <v-layout grid-list>
+                <v-flex xs2>
+                  <v-layout column>
+                    <v-card-text>Name</v-card-text>
+                    <v-card-text>Category</v-card-text>
+                    <v-card-text>Admin</v-card-text>
+                    <v-card-text>City</v-card-text>
+                    <v-card-text>Address</v-card-text>
+                    <v-card-text>Date</v-card-text>
+                    <v-card-text>Short Description</v-card-text>
+                    <v-card-text v-if="showlongDescription">Long Description</v-card-text>
+                    <v-flex xs1>
+                      <v-btn
+                      @click="showlongDescription = !showlongDescription"
+                      >Expand</v-btn>
+                    </v-flex>
+                  </v-layout>
+                </v-flex>
+                <hr>
+
+                <v-flex xs4>
+                  <v-layout column>
+                    <v-card-text>{{props.item.venueName}}</v-card-text>
+                    <v-card-text>{{props.item.category.categoryName}}</v-card-text>
+                    <v-card-text>{{props.item.admin.username}}</v-card-text>
+                    <v-card-text>{{props.item.city}}</v-card-text>
+                    <v-card-text>{{props.item.address}}</v-card-text>
+                    <v-card-text>{{props.item.dateAdded.split('T')[0]}}</v-card-text>
+                    <v-card-text>{{props.item.shortDescription}}</v-card-text>
+                    <v-card-text v-if="showlongDescription">{{props.item.longDescription}}</v-card-text>
+                  </v-layout>
+                </v-flex>
+
+                <v-flex>
+                  <v-layout>
+                  </v-layout>
+                </v-flex>
+
+            </v-layout>
+
+
 
             </v-card>
           </template>

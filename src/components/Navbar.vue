@@ -58,6 +58,7 @@
       },
       methods: {
         checkLogin() {
+          //Remove item
           if (localStorage.getItem("userId") !== 'null') {
             this.loggedIn = true;
           } else {
