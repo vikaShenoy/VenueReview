@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="452b1f3e-30d6-4b06-a88b-1a807f2cd91e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Venues.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Venues.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Auth/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Auth/Signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/Signup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Venues/Venues.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Venues/Venues.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Venues/Venues.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Venues/Venues.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,73 +21,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/Venues.vue">
+        <entry file="file://$PROJECT_DIR$/src/components/Auth/Signup.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="295" column="61" selection-start-line="295" selection-start-column="61" selection-end-line="295" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Profile/BasicInfo.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
-              <folding>
-                <element signature="n#style#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#0;n#v-spacer#0;n#v-layout#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#0;n#v-spacer#0;n#v-layout#1;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#0;n#v-spacer#0;n#v-layout#2;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h4#0;n#v-spacer#0;n#v-layout#0;n#div#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Auth/Login.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1258">
-              <caret line="74" selection-start-line="74" selection-end-line="79" selection-end-column="26" />
+            <state relative-caret-position="231">
+              <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#v-app#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Profile/ProfilePicture.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3315">
-              <caret line="195" column="12" selection-start-line="195" selection-start-column="12" selection-end-line="195" selection-end-column="12" />
-              <folding>
-                <element signature="n#style#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#v-card-text#0;n#v-card#0;n#v-dialog#0;n#v-layout#0;n#template#0;n#v-layout#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Home.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Profile/Profile.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
-              <folding>
-                <element signature="e#12#57#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,6 +43,12 @@
         <option value="Vue Single File Component" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>saveRe</find>
+      <find>console.log</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -117,22 +70,26 @@
         <option value="$PROJECT_DIR$/src/components/ProfilePicture.vue" />
         <option value="$PROJECT_DIR$/src/components/BasicInfo.vue" />
         <option value="$PROJECT_DIR$/src/components/Profile.vue" />
-        <option value="$PROJECT_DIR$/src/components/Profile/BasicInfo.vue" />
         <option value="$PROJECT_DIR$/src/components/Main.vue" />
         <option value="$PROJECT_DIR$/src/router/main.js" />
         <option value="$PROJECT_DIR$/src/components/Index.vue" />
         <option value="$PROJECT_DIR$/src/components/App.vue" />
-        <option value="$PROJECT_DIR$/src/components/Auth/Login.vue" />
-        <option value="$PROJECT_DIR$/src/components/Auth/Signup.vue" />
         <option value="$PROJECT_DIR$/src/Venues.vue" />
-        <option value="$PROJECT_DIR$/src/components/Navbar.vue" />
-        <option value="$PROJECT_DIR$/src/main.js" />
-        <option value="$PROJECT_DIR$/src/components/Profile/Profile.vue" />
-        <option value="$PROJECT_DIR$/src/components/Profile/ProfilePicture.vue" />
         <option value="$PROJECT_DIR$/.editorconfig" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/src/components/Home.vue" />
         <option value="$PROJECT_DIR$/src/components/Venues.vue" />
+        <option value="$PROJECT_DIR$/src/components/Venues/Review.vue" />
+        <option value="$PROJECT_DIR$/src/components/Venues/AddVenue.vue" />
+        <option value="$PROJECT_DIR$/src/components/Home.vue" />
+        <option value="$PROJECT_DIR$/src/components/Profile/BasicInfo.vue" />
+        <option value="$PROJECT_DIR$/src/components/Profile/ProfilePicture.vue" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/components/Venues/Venues.vue" />
+        <option value="$PROJECT_DIR$/src/components/Auth/Login.vue" />
+        <option value="$PROJECT_DIR$/src/components/Navbar.vue" />
+        <option value="$PROJECT_DIR$/src/components/Auth/Signup.vue" />
+        <option value="$PROJECT_DIR$/src/components/Venues/Venues.js" />
+        <option value="$PROJECT_DIR$/src/components/Profile/Profile.vue" />
       </list>
     </option>
   </component>
@@ -142,101 +99,53 @@
     <option name="height" value="1815" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="365-Assignment-2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="365-Assignment-2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="365-Assignment-2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="assets" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="365-Assignment-2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="365-Assignment-2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Auth" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="365-Assignment-2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Profile" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="assignment-2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment-2" type="462c0819:PsiDirectoryNode" />
+              <item name="365-Assignment-2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="365-Assignment-2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment-2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment-2" type="462c0819:PsiDirectoryNode" />
+              <item name="365-Assignment-2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="365-Assignment-2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="assignment-2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment-2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="assignment-2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment-2" type="462c0819:PsiDirectoryNode" />
+              <item name="365-Assignment-2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="365-Assignment-2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Profile" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="editorconfig.notification" value="{&#10;}&#10;}&#10;]&#10;}&#10;}&#10;" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../assignment2-server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Venues" />
       <recent name="C:\Users\blazi\OneDrive\Documents\Uni\365\365-Assignment-2\src\components" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="C:\Users\blazi\OneDrive\Documents\Uni\365\365-Assignment-2\src\router" />
       <recent name="$PROJECT_DIR$/src/components/Auth" />
-      <recent name="C:\Users\blazi\OneDrive\Documents\Uni\365\365-Assignment-2\src\components\Profile" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -278,6 +187,13 @@
       <workItem from="1558089115056" duration="9016000" />
       <workItem from="1558133937155" duration="1249000" />
       <workItem from="1558258069964" duration="5455000" />
+      <workItem from="1558339300179" duration="3310000" />
+      <workItem from="1558391386572" duration="8796000" />
+      <workItem from="1558402734627" duration="86000" />
+      <workItem from="1558403058358" duration="689000" />
+      <workItem from="1558413788667" duration="979000" />
+      <workItem from="1558420273925" duration="16096000" />
+      <workItem from="1558477910276" duration="4850000" />
     </task>
     <task id="LOCAL-00001" summary="Photo upload worked on.&#10;- Added the call to server to upload photo on button click.&#10;- Debugged the issue with headers not being properly set.">
       <created>1557811400145</created>
@@ -307,11 +223,39 @@
       <option name="project" value="LOCAL" />
       <updated>1558135163007</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="User can add reviews. &#10;- Review component loads and works. &#10;- Checks implemented for empty review body and user reviewing their own venue.">
+      <created>1558398978054</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1558398978055</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added error message for review.">
+      <created>1558403740877</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1558403740877</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add venue functionality complete. &#10;- New component for adding venues added. &#10;- Error checking implemented.">
+      <created>1558429355206</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1558429355206</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixing bugs, tidying things up.">
+      <created>1558436990989</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1558436990989</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102668000" />
+    <option name="totallyTimeSpent" value="137474000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -323,10 +267,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1293" height="733" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14149444" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.27534685" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -341,23 +284,62 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4994664" weight="0.32669982" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.32751092" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.36650082" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.25581396" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3283582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1430096" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3283582" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32969433" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4994664" weight="0.32669982" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053364" side_tool="true" weight="0.32751092" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.36655593" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3283582" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Photo upload worked on.&#10;- Added the call to server to upload photo on button click.&#10;- Debugged the issue with headers not being properly set." />
     <MESSAGE value="Photo upload worked on.&#10;- Added file reader functionality to upload a photo.&#10;- Binary data is still slightly inaccurate." />
     <MESSAGE value="Added redirect to main page. &#10;- Working on stylin navbar." />
     <MESSAGE value="Added search feature to venues page. &#10;- User can filter venues based on a search term." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added search feature to venues page. &#10;- User can filter venues based on a search term." />
+    <MESSAGE value="User can add reviews. &#10;- Review component loads and works. &#10;- Checks implemented for empty review body and user reviewing their own venue." />
+    <MESSAGE value="Added error message for review." />
+    <MESSAGE value="Add venue functionality complete. &#10;- New component for adding venues added. &#10;- Error checking implemented." />
+    <MESSAGE value="Fixing bugs, tidying things up." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs, tidying things up." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/Profile/ProfilePicture.vue</url>
+          <line>164</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/util/Validate.js">
@@ -383,26 +365,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Main.vue" />
     <entry file="file://$PROJECT_DIR$/src/components/Index.vue" />
-    <entry file="file://$PROJECT_DIR$/src/components/Auth/Signup.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="169" column="19" selection-start-line="169" selection-start-column="19" selection-end-line="169" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#v-app#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="41" column="18" lean-forward="true" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -431,24 +393,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Navbar.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/Venues/Review.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="52" column="26" lean-forward="true" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+        <state relative-caret-position="239">
+          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Venues.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/Venues/AddVenue.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="295" column="61" selection-start-line="295" selection-start-column="61" selection-end-line="295" selection-end-column="61" />
+        <state relative-caret-position="410">
+          <caret line="57" column="76" selection-start-line="57" selection-start-column="76" selection-end-line="57" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Navbar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Home.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="28" column="19" lean-forward="true" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#v-app#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Profile/ProfilePicture.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="173" column="35" lean-forward="true" selection-start-line="173" selection-start-column="35" selection-end-line="173" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-card-text#0;n#v-card#0;n#v-dialog#0;n#v-layout#0;n#template#0;n#v-layout#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Profile/Profile.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+          <folding>
+            <element signature="e#12#57#0" expanded="true" />
+            <element signature="n#style#0;n#v-app#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Venues/Venues.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4011">
+          <caret line="191" column="44" lean-forward="true" selection-start-line="191" selection-start-column="44" selection-end-line="191" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Profile/BasicInfo.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+        <state relative-caret-position="-414">
+          <caret line="109" column="42" lean-forward="true" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
           <folding>
             <element signature="n#style#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#0;n#v-spacer#0;n#v-layout#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
@@ -459,40 +467,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Venues/Venues.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-896">
+          <caret line="203" column="40" selection-start-line="203" selection-start-column="40" selection-end-line="203" selection-end-column="40" />
+          <folding>
+            <element signature="e#118#152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Auth/Login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" selection-start-line="74" selection-end-line="79" selection-end-column="26" />
+        <state relative-caret-position="-735">
+          <caret line="70" column="56" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="56" />
           <folding>
             <element signature="n#style#0;n#v-app#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Profile/ProfilePicture.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/Auth/Signup.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3315">
-          <caret line="195" column="12" selection-start-line="195" selection-start-column="12" selection-end-line="195" selection-end-column="12" />
+        <state relative-caret-position="231">
+          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
-            <element signature="n#style#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v-card-text#0;n#v-card#0;n#v-dialog#0;n#v-layout#0;n#template#0;n#v-layout#0;n#v-card#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Home.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Profile/Profile.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="e#12#57#0" expanded="true" />
+            <element signature="n#style#0;n#v-app#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

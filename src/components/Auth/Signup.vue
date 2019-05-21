@@ -20,10 +20,8 @@
         userId: 0
       }
     },
-    mounted: function() {
-      console.log("Mounting complete.");
-    },
     methods: {
+
       /**
        * Check user first name field is non-empty.
        * @returns {boolean} true if first name is valid, false otherwise
@@ -37,7 +35,6 @@
         }
         return this.firstNameErrors.length === 0;
       },
-
       /**
        * Check if user last name is non-empty.
        * @returns {boolean} true if name valid, false otherwise.
@@ -51,7 +48,6 @@
         }
         return this.lastNameErrors.length === 0;
       },
-
       /**
        * Check if input username is non-empty and less than 64 chars.
        * @returns {boolean} true if valid, false otherwise.

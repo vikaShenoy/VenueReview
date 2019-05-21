@@ -76,7 +76,6 @@ export default {
       }
 
       if (this.selectedCostRating) {
-        console.log(this.selectedCostRating);
         let maxCostRating = 0;
         if (this.selectedCostRating === "$") maxCostRating = 1;
         else if (this.selectedCostRating === "$$") maxCostRating = 2;
@@ -92,6 +91,7 @@ export default {
           venue => venue.admin.userId.toString() === localStorage.getItem("userId")
         );
       }
+      filteredVenues.sort((a, b) => b.meanStarRating - a.meanStarRating);
       return filteredVenues;
     }
   },
@@ -105,6 +105,11 @@ export default {
       this.getLocation();
     },
 
+    /**
+     * Get reviews for an item (venue) from the server.
+     * @param item venue to retrieve venues for.
+     * @param venueId id of the venue to use in the request.
+     */
     getVenueReviews(item, venueId) {
       let headers = {'X-Authorization': localStorage.getItem("authToken")};
       this.$http.get("http://localhost:4941/api/v1/venues/" + venueId + "/reviews", {headers: headers})
@@ -156,12 +161,13 @@ export default {
      */
     getAllVenues() {
       let headers = {'X-Authorization': localStorage.getItem("authToken")};
-      let url = rootUrl + "/venues";
-      if (this.latitude != null) url += "?myLatitude=" + this.latitude + "&myLongitude=" + this.longitude;
+      let url = rootUrl + "/venues?sortBy=STAR_RATING";
+      if (this.latitude != null) url += "&myLatitude=" + this.latitude + "&myLongitude=" + this.longitude;
       this.$http.get(url, {
         headers: headers
       })
         .then(function(response) {
+          console.log(response.body);
           this.getVenueDetails(response.body);
         }, function(error) {
           console.log(error);
@@ -194,7 +200,6 @@ export default {
       }
       this.cityList.unshift("");
       this.categoryList.unshift("");
-      venueList.sort((a, b) => a.meanStarRating - b.meanStarRating);
       this.unfilteredVenues = venueList;
     },
 

@@ -30,7 +30,6 @@
         this.$router.push('/profile/' + localStorage.getItem('userId'));
       },
       loadHome() {
-        console.log("Home button function called.");
         this.$router.push('/home');
       }
     },

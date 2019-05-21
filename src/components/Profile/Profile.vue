@@ -28,7 +28,6 @@
     },
     mounted: function() {
       this.checkUser();
-      console.log(this);
     },
     methods: {
       /**
@@ -36,7 +35,7 @@
        * Set the ownProfile flag to true if so.
        */
       checkUser() {
-        if (this.$route.params.userId === localStorage.getItem("userId")) {
+        if (this.$route.params.userId.toString() === localStorage.getItem("userId")) {
           this.ownProfile = true;
         }
       },

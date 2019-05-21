@@ -12,12 +12,13 @@
         errorFlag: false,
       }
     },
-    mounted: function() {
-      console.log("Mounting.");
-    },
     methods: {
+      /**
+       * Send a login request to the server.
+       * Try with the userEmail field as a username first, then email.
+       * Call login success function if request is successful.
+       */
       login() {
-
         // try to send req with username first, then email.
         this.$http.post("http://localhost:4941/api/v1/users/login", JSON.stringify({
           "username": this.userEmail,
@@ -40,6 +41,12 @@
           });
       },
 
+      /**
+       * Call when the user login request is successful.
+       * Disable error flag, set token and userId in local storage.
+       * Route to the profile page.
+       * @param response HTTP response from the profile page.
+       */
       loginSuccess(response) {
         this.errorFlag = false;
         localStorage.setItem("authToken", response.data.token);
@@ -47,6 +54,10 @@
         this.$router.push("/profile/" + response.data.userId);
       },
 
+      /**
+       * Check password field is not empty.
+       * @returns {boolean} true if there are no errors.
+       */
       validatePassword() {
         this.passwordErrors = [];
         if (!this.password) {
@@ -54,6 +65,11 @@
         }
         return this.passwordErrors.length === 0;
       },
+
+      /**
+       * Check uerEmail field is non-empty.
+       * @returns {boolean} true if there are no errors.
+       */
       validateUserEmail() {
         this.userEmailErrors = [];
         if (!this.userEmail) {

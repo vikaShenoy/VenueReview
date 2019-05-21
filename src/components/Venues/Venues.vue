@@ -8,7 +8,7 @@
 
         <v-snackbar
           v-model="snackbar"
-          :timeout="5000"
+          :timeout="3000"
         >
           {{ snackbarText }}
           <v-btn
@@ -143,7 +143,7 @@
                 <v-flex xs2>
                   <v-layout column>
                     <v-card-text>Category</v-card-text>
-                    <v-card-text>Admin</v-card-text>
+                    <v-card-text >Admin</v-card-text>
                     <v-card-text>City</v-card-text>
                     <v-card-text>Star Rating (mean)</v-card-text>
                     <v-card-text>Cost Rating (mode)</v-card-text>
@@ -156,7 +156,10 @@
                 <v-flex>
                   <v-layout column>
                     <v-card-text>{{props.item.category.categoryName}}</v-card-text>
-                    <v-card-text>{{props.item.admin.username}}</v-card-text>
+                    <br>
+                    <router-link :to="{name: 'Profile',
+                    params: { userId: props.item.admin.userId }}">{{props.item.admin.username}}</router-link>
+                    <br>
                     <v-card-text>{{props.item.city}}</v-card-text>
                     <v-card-text>{{props.item.meanStarRating}}</v-card-text>
                     <v-card-text>{{props.item.modeCostRating}}</v-card-text>
