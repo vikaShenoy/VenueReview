@@ -5,15 +5,11 @@
       venueId: {},
       adminId: {},
       value: {},
-      reviewers: {},
-    },
-    mounted: function() {
-      console.log(this.reviewers);
     },
     data() {
       return {
-        snackbar: false,
-        snackbarText: "",
+        showError: false,
+        errorMessage: "",
         reviewBody: "",
         reviewErrors: [],
         starRating: null,
@@ -23,20 +19,22 @@
       }
     },
     methods: {
-      showSnackbar(message) {
-        this.snackbar = true;
-        this.snackbarText = message;
+      /**
+       * Show a v-alert component with an error message.
+       * @param message text to be displayed in the error message.
+       */
+      showErrorMessage(message) {
+        this.showError = true;
+        this.errorMessage = message;
       },
+
+      /**
+       * Get the review data the user has input.
+       * Check it's valid.
+       * Send a post request to add the review.
+       */
       addReview() {
         if (this.validateReviewBody()) return;
-        // Check they're not admin of the venue
-        console.log(localStorage.getItem("userId"));
-        if (this.adminId.toString() === localStorage.getItem("userId")) {
-          console.log("Admin and venue match");
-          this.showSnackbar("Admin can't review their own venue.");
-        }
-        // Check they haven't written a review of the venue already
-
         let headers = {'X-Authorization': localStorage.getItem("authToken")};
         let body = {
           "reviewBody": this.reviewBody,
@@ -47,9 +45,17 @@
           .then(function(response) {
             console.log(response);
           }, function(error) {
-            console.log(error);
+            if (error.status === 403) {
+              this.showErrorMessage("Can't review the same venue twice!")
+            }
           });
       },
+
+      /**
+       * Show an error message if the user has not
+       * entered a review body.
+       * @returns {number}
+       */
       validateReviewBody() {
         this.reviewErrors = [];
         if (this.reviewBody.length === 0) {
@@ -72,7 +78,9 @@
         :error-messages="reviewErrors"
         @blur="validateReviewBody()"
       ></v-text-field>
+
       <v-card-text>Star Rating</v-card-text>
+
       <v-slider
         v-model="starRating"
         :tick-labels="starRatingLabels"
@@ -80,7 +88,9 @@
         step="1"
         tick-size="2"
       ></v-slider>
+
       <v-card-text>Cost Rating</v-card-text>
+
       <v-slider
         v-model="costRating"
         :tick-labels="costRatingLabels"
@@ -89,32 +99,25 @@
         tick-size="2"
       ></v-slider>
       <br>
+
+      <v-alert
+        :value="showError"
+        type="error"
+      >
+        {{ this.errorMessage }}
+      </v-alert>
+
       <v-spacer align="center">
       <v-btn color="blue darken-1" flat="flat"
              @click="addReview()"
       >Add Review</v-btn>
       <v-btn color="red darken-1" flat="flat"
-             @click.native="$emit('input')"
+             @click.native="showError = false ; $emit('input')"
       >Close</v-btn>
       </v-spacer>
+
     </v-card>
-    <v-snackbar
-      v-model="snackbar"
-      :timeout="5000"
-    >
-      {{ snackbarText }}
-      <v-btn
-        color="pink"
-        flat
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
   </v-dialog>
-
 </template>
-
 <style scoped>
-
 </style>
