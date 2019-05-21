@@ -41,9 +41,11 @@
           "starRating": this.starRating + 1,
           "costRating": this.costRating + 1,
         };
-        this.$http.post("http://localhost:4941/api/v1/venues/" + this.venueId + "/reviews", JSON.stringify(body), {headers: headers})
+        this.$http.post("http://localhost:4941/api/v1/venues/" + this.venueId + "/reviews",
+          JSON.stringify(body), {headers: headers})
           .then(function(response) {
-            console.log(response);
+            this.$emit('saveReview');
+            this.$emit('input');
           }, function(error) {
             if (error.status === 403) {
               this.showErrorMessage("Can't review the same venue twice!")

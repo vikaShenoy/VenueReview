@@ -1,8 +1,9 @@
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 let rootUrl = "http://localhost:4941/api/v1";
 import Review from "./Review.vue";
+import AddVenue from "./AddVenue.vue";
 export default {
-  components: {Review},
+  components: {Review, AddVenue},
   data () {
     return {
       name: "Venues.vue",
@@ -41,6 +42,7 @@ export default {
       latitude: null,
       longitude: null,
       showMyVenues: false,
+      showAddVenue: false,
     }
   },
   mounted: function() {
@@ -158,7 +160,6 @@ export default {
         headers: headers
       })
         .then(function(response) {
-          console.log(response.body);
           this.getVenueDetails(response.body);
         }, function(error) {
           console.log(error);

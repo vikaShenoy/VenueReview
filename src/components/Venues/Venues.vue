@@ -1,5 +1,4 @@
 <script src="./Venues.js">
-
 </script>
 
 <template>
@@ -58,11 +57,28 @@
             ></v-select>
           </v-flex>
         </v-layout>
-        <v-switch
-          v-model="showMyVenues"
-          :label="`My Venues`"
-          color="white"
-        ></v-switch>
+        <v-btn
+          light
+          @click="showAddVenue = !showAddVenue"
+        >Add</v-btn>
+
+        <AddVenue
+        v-model="showAddVenue"
+        @saveVenue="getAllVenues()"
+        ></AddVenue>
+
+        <v-layout row>
+          <v-flex>
+            <v-spacer align="right">
+              <v-switch
+                class="padding"
+                v-model="showMyVenues"
+                :label="`My Venues`"
+                color="white"
+              ></v-switch>
+            </v-spacer>
+          </v-flex>
+        </v-layout>
         <div>
         <v-data-table
           :headers="headers"
@@ -107,6 +123,7 @@
                   >Add Review</v-btn>
                   <Review
                     v-model="showReview"
+                    @saveReview="getVenueReviews(props.item, props.item.venueId)"
                     :venueId="props.item.venueId"
                     :adminId="props.item.admin.userId"
                     :reviewers="props.item.reviews"></Review>

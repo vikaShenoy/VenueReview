@@ -13,9 +13,6 @@
       checkLogin() {
         //Remove item
         if (localStorage.getItem("userId") !== 'null') {
-          console.log(100);
-          console.log(localStorage.getItem("userId") !== null);
-          console.log(localStorage.getItem("userId") !== 'null');
           this.loggedIn = true;
         } else {
           this.loggedIn = false;
