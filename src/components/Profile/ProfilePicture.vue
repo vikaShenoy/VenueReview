@@ -163,15 +163,13 @@
         <input type="file" @change="onFileChanged" accept=".jpeg, .png, .jpg">
 
         <v-btn
-          color="blue"
-          dark
+          depressed
           @click="uploadProfilePhoto"
           :disabled="uploadDisable"
         >Upload Photo</v-btn>
 
         <v-btn
-          color="red"
-          dark
+          depressed
           @click="deleteProfilePhoto"
           :disabled="deleteDisable"
         >Delete Photo</v-btn>

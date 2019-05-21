@@ -11,12 +11,8 @@
     },
     methods: {
       checkLogin() {
-        //Remove item
-        if (localStorage.getItem("userId") !== 'null') {
-          this.loggedIn = true;
-        } else {
-          this.loggedIn = false;
-        }
+        // TODO - remove item
+        this.loggedIn = localStorage.getItem("userId") !== 'null';
       },
       logoutUser() {
         localStorage.setItem("userId", null);
@@ -84,7 +80,6 @@
 
         <v-toolbar-items>
           <v-btn
-            v-if="loggedIn"
             flat
             @click="loadHome()"
           >Home</v-btn>

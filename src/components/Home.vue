@@ -25,7 +25,7 @@
 
 <template>
   <div>
-    <v-app>
+    <v-app style="background: mintcream">
       <v-container>
 
         <!--Venue component-->

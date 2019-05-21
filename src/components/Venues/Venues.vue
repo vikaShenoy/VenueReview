@@ -112,12 +112,20 @@
                   {{props.item.venueName}}
                 </v-card-title>
                 <v-spacer align="end">
+                  <input type="file" @change="onFileChanged" accept=".jpeg, .png, .jpg">
                   <v-btn
-                    color="red"
+                    dark
+                    depressed
+                    @click="uploadVenuePhoto(props.item.venueId)"
+                  >Upload Photo</v-btn>
+                  <v-btn
+                    dark
+                    depressed
                     @click="expandVenue = !expandVenue"
                   >Expand</v-btn>
                   <v-btn
-                    color="red"
+                    dark
+                    depressed
                     v-if="!userIsVenueAdmin(props.item.admin.userId) && userIsLoggedIn()"
                     @click="showReview = !showReview"
                   >Add Review</v-btn>
@@ -166,6 +174,7 @@
             </v-layout>
 
             <v-container v-if="expandVenue" grid-list-sm fluid>
+              <v-card-title class="uk-text-large">Photos</v-card-title>
               <v-layout row wrap>
                 <v-flex
                   v-for="item in props.item.photos"
@@ -179,6 +188,11 @@
                       aspect-ratio="1"
                       class="grey lighten-2"
                     >
+                      <v-btn
+                        @click="deletePhoto(props.item.venueId, item.photoFilename)"
+                        flat
+                        color="red"
+                      >X</v-btn>
                       <template v-slot:placeholder>
                         <v-layout
                           fill-height

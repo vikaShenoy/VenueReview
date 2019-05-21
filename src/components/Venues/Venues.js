@@ -43,6 +43,8 @@ export default {
       longitude: null,
       showMyVenues: false,
       showAddVenue: false,
+      venuePhoto: null,
+      imageType: "",
     }
   },
   mounted: function() {
@@ -229,6 +231,47 @@ export default {
     },
     userIsLoggedIn() {
       return localStorage.getItem("authToken") !== 'null'
+    },
+
+    /**
+     * Called when the user uses the input to choose a file.
+     * Load the image data and store it to be sent to server.
+     * @param event input file change event.
+     */
+    onFileChanged(event) {
+      console.log("File change event called");
+      let file = event.target.files[0];
+      let reader = new FileReader();
+      this.imageType = file.type;
+      this.venuePhoto = file;
+    },
+
+    uploadVenuePhoto(venueId) {
+      console.log("Upload photo func called");
+/*      const formData = new FormData();
+      formData.append('photo', this.venuePhoto, this.venuePhoto.name);
+      formData.append('description', 'Photo of a venue.');
+      formData.append('makePrimary', 'false');
+      let headers = {'X-Authorization': localStorage.getItem("authToken")};
+      this.$http.post("http://localhost:4941/api/v1/venues/" + venueId + "/photos", formData,{headers: headers})
+        .then(function(response) {
+          this.getAllVenues();
+        }, function(error) {
+          console.log(error);
+        });*/
+    },
+
+    deletePhoto(venueId, photoFilename) {
+      console.log("Delete called");
+/*      console.log(venueId);
+      let headers = {'X-Authorization': localStorage.getItem("authToken")};
+      this.$http.delete("http://localhost:4941/api/v1/venues/" + venueId + "/photos/" + photoFilename,
+        {headers: headers})
+        .then(function(response) {
+          this.getAllVenues();
+        }, function(error) {
+          console.log(error);
+        });*/
     }
   },
 }

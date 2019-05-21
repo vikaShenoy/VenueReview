@@ -46,7 +46,7 @@
 
 <template>
   <div>
-    <v-app>
+    <v-app style="background: mintcream">
       <v-container>
         <v-layout row>
         <!--Profile info card-->
@@ -59,8 +59,6 @@
             <ProfilePicture :ownProfile="ownProfile"/>
           </v-flex>
         </v-layout>
-
-
       </v-container>
     </v-app>
   </div>

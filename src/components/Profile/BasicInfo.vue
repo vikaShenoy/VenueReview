@@ -202,7 +202,7 @@
         <v-layout row justify-center>
           <v-dialog v-model="dialog" persistent max-width="500">
             <template v-slot:activator="{ on }">
-              <v-btn color="blue" dark v-on="on">Edit Profile</v-btn>
+              <v-btn depressed v-on="on">Edit Profile</v-btn>
             </template>
             <v-card class="uk-padding-small">
               <v-card-title class="headline">Edit Profile</v-card-title>
@@ -234,7 +234,7 @@
         <v-layout row justify-center>
           <v-dialog v-model="passwordDialog" persistent max-width="500">
             <template v-slot:activator="{ on }">
-              <v-btn color="red" dark v-on="on">Edit Password</v-btn>
+              <v-btn depressed v-on="on">Edit Password</v-btn>
             </template>
             <v-card class="uk-padding-small">
               <v-card-title class="headline">Edit Password</v-card-title>
