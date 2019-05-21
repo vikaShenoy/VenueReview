@@ -1,6 +1,6 @@
 <script>
 
-  import Venues from "./Venues.vue";
+  import Venues from "./Venues/Venues.vue";
 
 
   export default {

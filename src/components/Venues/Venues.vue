@@ -1,11 +1,14 @@
 <script xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   import 'material-design-icons-iconfont/dist/material-design-icons.css';
   let rootUrl = "http://localhost:4941/api/v1";
+  import Review from "./Review.vue";
   export default {
+    components: {Review},
     data () {
       return {
         name: "Venues.vue",
         rowsPerPageItems: [10],
+        showReview: false,
         pagination: {
           rowsPerPage: 10
         },
@@ -100,9 +103,7 @@
       },
 
       getVenueReviews(item, venueId) {
-        console.log(item);
         let headers = {'X-Authorization': localStorage.getItem("authToken")};
-        console.log(50);
         this.$http.get("http://localhost:4941/api/v1/venues/" + venueId + "/reviews", {headers: headers})
           .then(function(response) {
             item.reviews = response.body;
@@ -193,7 +194,6 @@
         this.categoryList.unshift("");
         venueList.sort((a, b) => a.meanStarRating - b.meanStarRating);
         this.unfilteredVenues = venueList;
-        console.log(1);
       },
 
       /**
@@ -224,6 +224,12 @@
         }
         return tableData;
       },
+      userIsVenueAdmin(adminId) {
+        return localStorage.getItem("userId") === adminId.toString();
+      },
+      userIsLoggedIn() {
+        return localStorage.getItem("authToken") !== 'null'
+      }
     },
   }
 </script>
@@ -328,8 +334,14 @@
                   >Expand</v-btn>
                   <v-btn
                     color="red"
-                    @click="expandVenue = !expandVenue"
+                    v-if="!userIsVenueAdmin(props.item.admin.userId) && userIsLoggedIn()"
+                    @click="showReview = !showReview"
                   >Add Review</v-btn>
+                  <Review
+                    v-model="showReview"
+                    :venueId="props.item.venueId"
+                    :adminId="props.item.admin.userId"
+                    :reviewers="props.item.reviews"></Review>
                 </v-spacer>
               </v-layout>
 
@@ -425,11 +437,10 @@
                       </v-layout>
                     </v-flex>
                   </v-layout>
+
                 </v-card>
               </div>
             </v-container>
-
-
             </v-card>
           </template>
         </v-data-table>
