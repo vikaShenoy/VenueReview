@@ -17,7 +17,9 @@
         usernameErrors: [],
         passwordErrors: [],
         confirmPasswordErrors: [],
-        userId: 0
+        userId: 0,
+        snackbar: false,
+        snackbarText: "",
       }
     },
     methods: {
@@ -152,8 +154,13 @@
                 console.log(e);
               });
           }, function(e) {
+            this.showSnackbar(e.statusText);
             console.log(e);
           })
+      },
+      showSnackbar(message) {
+        this.snackbar = true;
+        this.snackbarText = message;
       }
     }
   }
@@ -216,6 +223,11 @@
             @click="signUp()"
             >Sign Up</v-btn>
         </v-card>
+
+        <v-snackbar
+          v-model="snackbar"
+          :timeout="2000"
+        >{{ snackbarText }}</v-snackbar>
 
       </v-container>
     </v-app>
